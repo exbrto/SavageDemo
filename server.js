@@ -3,7 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 
-var db, collection;
+let db, collection;
 
 const url = "mongodb+srv://demo:demo@cluster0-q2ojb.mongodb.net/test?retryWrites=true";
 const dbName = "demo";
@@ -42,9 +42,26 @@ app.put('/messages', (req, res) => {
   db.collection('messages')
   .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
     $set: {
-      thumbUp:req.body.thumbUp
+      thumbUp:req.body.thumbUp + 1
     }
-  }, {
+  },
+   {
+    sort: {_id: -1},
+    upsert: true
+  }, (err, result) => {
+    if (err) return res.send(err)
+    res.send(result)
+  })
+})
+
+app.put('/down', (req, res) => {
+  db.collection('messages')
+  .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
+    $set: {
+      thumbUp:req.body.thumbUp - 1
+    }
+  },
+   {
     sort: {_id: -1},
     upsert: true
   }, (err, result) => {
