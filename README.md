@@ -1,4 +1,4 @@
-![21 Savage](public/21savage.jpg)
+![21 Savage](https://savagedemo-1mj4.onrender.com/)
 
 ## Installation
 
