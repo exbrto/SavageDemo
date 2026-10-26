@@ -1,4 +1,6 @@
-![21 Savage](https://savagedemo-1mj4.onrender.com/)
+
+Live link
+[21 Savage](https://savagedemo-1mj4.onrender.com/)
 
 ## Installation
 
